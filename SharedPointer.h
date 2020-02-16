@@ -1,8 +1,10 @@
 #pragma once
+#include <iostream>
+
 template <typename T>
 class SharedPointer
 {
-	size_t* mp_pointer_count;
+    size_t* mp_pointer_count;
 	T* mp_data;
 public:
 	SharedPointer(T*);
@@ -12,7 +14,9 @@ public:
 	T* Get() const;
 	T& operator*() const;
 	T* operator->() const;
-	friend SharedPointer<T> MakeShared(Args&&...);
+
+    template <typename ...Args>
+    friend SharedPointer<T> MakeShared(Args&&...);
 };
 
 
@@ -58,4 +62,11 @@ template<typename T>
 T* SharedPointer<T>::operator->() const
 {
 	return mp_data;
+}
+
+
+template<typename T, typename ...Args>
+SharedPointer<T> MakeShared(Args&&...)
+{
+
 }

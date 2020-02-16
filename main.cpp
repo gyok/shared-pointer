@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "SharedPointer.h"
 using namespace std;
 
@@ -11,7 +12,8 @@ void tst() {
 }
 
 int main() {
-	tst();
-	system("pause");
+    shared_ptr<int> sp_i = std::make_shared<int>(10);
+    tst();
+//    std::cin.get();
 	return 0;
 }
